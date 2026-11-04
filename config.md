@@ -28,6 +28,10 @@ exact finger count required for a gesture to register.
 
 aerospace command to run on a vertical swipe, split on whitespace into arguments, e.g. `"move-workspace-to-monitor --wrap-around next"` or `"workspace-back-and-forth"`. an empty string disables that direction. vertical gestures are only recognised when at least one of these is set, and they share the thresholds below (measured against pad height instead of width). `natural_swipe` does not apply.
 
+### `socket_path` · *string* · default **`/tmp/bobko.aerospace-$USER.sock`**
+
+path of the aerospace server socket. only needed if you run a non-standard aerospace build (e.g. a debug build listens on `/tmp/bobko.aerospace.debug-$USER.sock`).
+
 ### `distance_pct` · *float* · default **0.12**
 
 horizontal travel needed (≥12%) before a **slow** swipe may fire.

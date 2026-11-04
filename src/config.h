@@ -31,6 +31,7 @@ typedef struct {
 	const char* swipe_right;
 	const char* swipe_up; // aerospace command, "" disables
 	const char* swipe_down; // aerospace command, "" disables
+	const char* socket_path; // NULL = default aerospace socket
 } Config;
 
 static Config default_config()
@@ -56,6 +57,7 @@ static Config default_config()
 	config.swipe_right = "next";
 	config.swipe_up = "";
 	config.swipe_down = "";
+	config.socket_path = NULL;
 	return config;
 }
 
@@ -168,6 +170,10 @@ static Config load_config()
 	item = yyjson_obj_get(root, "swipe_down");
 	if (item && yyjson_is_str(item))
 		config.swipe_down = strdup(yyjson_get_str(item));
+
+	item = yyjson_obj_get(root, "socket_path");
+	if (item && yyjson_is_str(item) && yyjson_get_len(item) > 0)
+		config.socket_path = strdup(yyjson_get_str(item));
 
 	yyjson_doc_free(doc);
 	return config;

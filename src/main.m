@@ -421,7 +421,7 @@ int main(int argc, const char* argv[])
 			g_config.swipe_up,
 			g_config.swipe_down);
 
-		g_aerospace = aerospace_new(NULL);
+		g_aerospace = aerospace_new(g_config.socket_path);
 		if (!g_aerospace) {
 			fprintf(stderr, "Error: Failed to initialize Aerospace client.\n");
 			exit(EXIT_FAILURE);
